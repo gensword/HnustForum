@@ -45,8 +45,6 @@
     <div class="row">
         <div class="col-md-3">
         <button type="submit" value="publish" class="btn btn-default" name="subject">发布</button>
-             &emsp;or&emsp;
-            <button type="submit" value="draft" class="btn btn-default" name="subject">存至草稿</button>
         </div>
 
 

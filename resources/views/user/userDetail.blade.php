@@ -21,16 +21,16 @@
                     <span class="label label-success">founder</span>
                   @endif
               </div>
-              <div class="row page-header" ><div class="col-md-1"></div><div class="col-md-3"><h4>&nbsp;&nbsp;{{ $user->followers }}</h4>关注者</div><div class="col-md-3"><h4>&nbsp;&nbsp;{{count($user->articles)}}</h4>文章</div><div class="col-md-3"><h4>&nbsp; {{count($user->comments)}}</h4>评论</div></div>
+              <div class="row page-header" ><div class="col-md-1"></div><div class="col-md-3 col-xs-3"><h4>&nbsp;&nbsp;{{ $user->followers }}</h4>关注者</div><div class="col-md-3 col-xs-3"><h4>&nbsp;&nbsp;{{count($user->articles)}}</h4>文章</div><div class="col-md-3 col-xs-3"><h4>&nbsp; {{count($user->comments)}}</h4>评论</div></div>
               <div class="row page-header">
                   <div class="col-md-1"></div>
-                  <div class="col-md-3">
+                  <div class="col-md-3 col-xs-3">
                         <span class="label label-Info" data-toggle="tooltip" data-placement="bottom" title="@if(!empty($user->major)){{ $user->major }}@else 暂未填写 @endif" style="cursor:pointer;">专业</span>
                   </div>
-                  <div class="col-md-3 ">
+                  <div class="col-md-3 col-xs-3">
                       <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="@if(!empty($user->grade)){{ $user->grade }}@else 暂未填写 @endif" style="cursor:pointer;">年级</span>
                   </div>
-                  <div class="col-md-3 ">
+                  <div class="col-md-3 col-xs-3">
                       <span class="label label-success" data-toggle="tooltip" data-placement="bottom" title="@if(!empty($user->weixin)){{ $user->weixin }}@else 暂未填写 @endif" style="cursor:pointer;">微信</span>
                   </div>
               </div>
@@ -80,11 +80,13 @@
       <div class="col-md-1"></div>
       @section('contents')
       <div class="col-md-8 ">
+          <div class="hidden-xs">
           @if(Auth::id() == $user->id)
           <div class="row "> <div class="col-md-12" style="background-color:white; border: #e5e5e5 1px solid; text-align: center"><h5>hello <strong>{{ $user->username }}</strong>，你可以在这里修改和查看你的个人相关资料</h5></div></div>
               @elseif($user->resume)
                 <div class="row"> <div class="col-md-12" style="background-color:white; border: #e5e5e5 1px solid; text-align: center;"><h5>{{ $user->resume }}</h5></div></div>
           @endif
+          </div>
           <div class="row" style="margin-top: 30px;">
               <div class="col-md-12" style="background-color:white; border: #e5e5e5 1px solid; text-align: left; min-height: 200px">
                   <h5><strong>最近发布的文章</strong></h5>

@@ -20,7 +20,7 @@
             <button class="btn btn-default vote" style="background-color: #ff7e87"><span class="iconfont icon-dianzan"></span>点赞</button>
             </div>
             @foreach($vote_users as $vote_user)
-            <div class="col-md-1" id= "voteUserId{{ $vote_user->user->id }}" style="text-align: center; margin-top: 10px">
+            <div class="col-md-1 col-xs-3" id= "voteUserId{{ $vote_user->user->id }}" style="text-align: center; margin-top: 10px">
                 <a href="{{ url('/users/'.$vote_user->user->id) }}"><img src="{{ $vote_user->user->avatar }}" alt="..." class="img-circle img-responsive" > </a>
             </div>
                 @endforeach
@@ -94,7 +94,7 @@
         </div>
     </div>
 
-    <div class="row" style="background-color:white; border: #e5e5e5 1px solid; margin-top: 30px;text-align: center; padding-top: 10px;padding-bottom: 10px">
+    <div class="row" style="background-color:white; border: #e5e5e5 1px solid; margin-top: 30px;margin-bottom:30px; text-align: center; padding-top: 10px;padding-bottom: 10px">
         <span class="iconfont icon-sixin"></span><a href="{{ url("/users/message/to/".$user->id) }}">对本社区有建议？快来私信我</a>
     </div>
 @stop
@@ -138,7 +138,7 @@
                 if(data.isLogin == 0)
                     window.location.href="{{ url('/auth/login') }}";
                 if(data.status){
-                var vote = "<div class='col-md-1' id=voteUserId" +data.user_id + " style='text-align: center; margin-top: 10px'>" +
+                var vote = "<div class='col-md-1 col-xs-3' id=voteUserId" +data.user_id + " style='text-align: center; margin-top: 10px'>" +
                     "<a href="+"{{ url('/users/') }}"+"/"+data.user_id+"><img src="+ data.avatar +" alt='...' class='img-circle img-responsive' > </a>" +
                     "</div>";
                 $('.vote_button').after(vote);

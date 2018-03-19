@@ -100,6 +100,9 @@ class MessageController extends Controller
     public function sendMessage(Request $request, NewsController $news){
         //发送消息
 
+        if($request->toUid == Auth::id())
+            abort(403, 'sorry,you can not do that');
+
         $newMessage = new Messages;
         $newMessage->content = preg_replace_callback('/:(\w+):/', function ($matches) {
             return emoji($matches[0]);

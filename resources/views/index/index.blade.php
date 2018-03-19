@@ -50,9 +50,18 @@
 <div class="top"></div>
 <nav class="navbar navbar-default ">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/index') }}">HNUST</a>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url('/index') }}" style="font-family: 'Times New Roman'">Hnust</a>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
         <ul class="nav navbar-nav">
-            <li>
+            <li >
                 <a href="{{ url('/index/1') }}"> 爱旅行</a>
             </li>
             <li>
@@ -97,6 +106,7 @@
                 </ul>
             @endif
         </form>
+        </div>
     </div>
 </nav>
 @show
@@ -116,7 +126,7 @@
                 @if(isset($articles) && count($articles))
                 @foreach($articles as $article)
                 <div class="row" >
-                <div class="col-md-1 col-xs-1" style="padding-left: 0px ;">
+                <div class="col-md-1 col-xs-3" style="padding-left: 0px ;">
                     <a href="{{ url('/users/'.$article->user_id) }}"><img src="{{ $article->user->avatar }}" alt="..." class="img-circle img-responsive" > </a>
                 </div>
                     @if(in_array($article->article_status_id, [2, 6]))
@@ -131,7 +141,7 @@
                             <a href="{{url('/articles/'.$article->id)}}">{{ $article->title }}</a>
                         </div>
                     @endif
-                    <div class="col-md-2 col-xs-2" style="margin-top: 10px;padding-left: 5px; ">{{ $article->votes_total }} /{{ $article->comments_total }}/
+                    <div class="col-md-2 col-xs-8" style="margin-top: 10px;padding-left: 5px; ">{{ $article->votes_total }} /{{ $article->comments_total }}/
                         @if(floor((time()-strtotime($article->created_at))/60) < 60)
                             {{floor((time()-strtotime($article->created_at))/60)}}分钟前
                             @elseif(floor((time()-strtotime($article->created_at))/60/60) < 24)
@@ -152,7 +162,7 @@
                     </div>
                 @endif
             </div>
-            <div class="col-md-3" style="margin-left:80px;">
+            <div class="col-md-3 hidden-xs" style="margin-left:80px;">
                 <div class="row" style="background-color:#ffffe3; border: #e5e5e5 1px solid;text-align: center">
                 <h4 >社区规则</h4><hr style="margin-top: 10px">
                 <p style="margin-top: 10px">魅力的双唇，在于亲切友善的语言。<br>
@@ -169,17 +179,36 @@
                     @endforeach
                     </div>
                 </div>
-                <div class="row">
 
-                </div>
             </div>
+
+            <div class="col-xs-12 visible-xs-block" style="margin-top: 30px; ">
+                <div class="row" style="background-color:#ffffe3; border: #e5e5e5 1px solid;text-align: center">
+                    <h4 >社区规则</h4><hr style="margin-top: 10px">
+                    <p style="margin-top: 10px">魅力的双唇，在于亲切友善的语言。<br>
+                        可爱的双眼，要善于看到别人的优点。<br>
+                        请和谐讨论，做善良的自己
+                    </p></div>
+                <div class="row" style="margin-top: 50px; background-color: white;border: #e5e5e5 1px solid;text-align: center">
+                    <span style="">活跃用户</span><hr style="margin-top: 10px">
+                    <div class="users-label">
+                        @foreach(\App\Husers::all()->sortByDesc('vitality')->take(10) as $activeUser)
+                            <a class="users-label-item" href="{{ url('/users/'.$activeUser->id) }}" title="louduanxiong">
+                                <img class="avatar-small inline-block" src="{{ $activeUser->avatar }}"> {{ $activeUser->username }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     @show
 </div>
 @if( Route::currentRouteName() == 'category')<a href="{{ url('articles/create/'.Request::route('category_id')) }}" style="color: #838383"><span class="iconfont icon-bianji2"  style=" position: fixed;z-index: 100;bottom: 70px;right:0px;font-size: 55px;cursor:pointer;"></span> </a> @endif
 <a style="color: #838383"><span class="iconfont icon-fanhuidingbu" id="top" style="display:none; position: fixed;z-index: 100;bottom: 0px;right:0px;font-size: 50px;cursor:pointer;"></span> </a>
 @section('footer')
-    <div class="jumbotron " style=" margin-top:150px; height: 180px;background-color: white">
+    <div class="jumbotron " style=" margin-top:150px; background-color: white">
         <div class="container">
             <div class="row" style="margin-top: 0px;">
                 <div class="col-md-6">
@@ -254,7 +283,7 @@
     @section('listen')
     var status = '{{ Auth::check() }}';
     if( status){
-    var socket = io('http://localhost:6001');
+    var socket = io('http://www.51zixuea.cn:6001');
 
     socket.on('pmessage{{ Auth::id() }}', function (data) {
         console.log(data);
