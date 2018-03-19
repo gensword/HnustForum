@@ -57,7 +57,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/index') }}" style="font-family: 'Times New Roman'">Hnust</a>
+            <a class="navbar-brand" href="{{ url('/index') }}" >Hnust</a>
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
         <ul class="nav navbar-nav">
@@ -129,13 +129,20 @@
                 <div class="col-md-1 col-xs-3" style="padding-left: 0px ;">
                     <a href="{{ url('/users/'.$article->user_id) }}"><img src="{{ $article->user->avatar }}" alt="..." class="img-circle img-responsive" > </a>
                 </div>
-                    @if(in_array($article->article_status_id, [2, 6]))
+                    @if(in_array($article->article_status_id, [2]))
                     <div class="col-md-1 col-xs-1" style="margin-top: 10px;padding-left: 0px" >
                         <span class="label label-success">置顶</span>
                     </div>
                     <div class="col-md-8 col-xs-8" style="margin-top: 10px;padding-left: 0px">
                         <a href="{{url('/articles/'.$article->id)}}">{{ $article->title }}</a>
                     </div>
+                     @elseif(in_array($article->article_status_id, [4, 6]))
+                        <div class="col-md-1 col-xs-1" style="margin-top: 10px;padding-left: 0px" >
+                            <span class="label label-success">加精</span>
+                        </div>
+                        <div class="col-md-8 col-xs-8" style="margin-top: 10px;padding-left: 0px">
+                            <a href="{{url('/articles/'.$article->id)}}">{{ $article->title }}</a>
+                        </div>
                     @else
                         <div class="col-md-9 col-xs-9" style="margin-top: 10px;padding-left: 0px">
                             <a href="{{url('/articles/'.$article->id)}}">{{ $article->title }}</a>

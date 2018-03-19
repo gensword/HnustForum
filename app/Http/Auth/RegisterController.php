@@ -52,7 +52,7 @@ class RegisterController extends Controller
             'password_confirmation' => 'required',
             'username' => 'bail|required|unique:husers',
             'email' => 'bail|required|email|unique:husers',
-            'password' =>'required|confirmed']);
+            'password' =>'required|confirmed|min:6']);
     }
 
     /**

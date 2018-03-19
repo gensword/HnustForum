@@ -15,7 +15,7 @@
             </div>
 
             <div class="row">
-                <div class="alert alert-success col-md-12" role="alert" style="margin-top: 30px">请上传小于 2M 的@if(Request::route('gender') == 'man')男@else女@endif嘉宾照片，照片将会展示在@if(Request::route('gender') == 'man')男@else女@endif嘉宾栏目</div>
+                <div class="alert alert-success col-md-12" role="alert" style="margin-top: 30px">请上传小于 5M 的@if(Request::route('gender') == 'man')男@else女@endif嘉宾照片，照片将会展示在@if(Request::route('gender') == 'man')男@else女@endif嘉宾栏目</div>
             </div>
         </div>
     </div>

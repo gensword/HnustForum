@@ -111,13 +111,13 @@ class UserController extends Controller
             $form->saved(function (Form $form) {
                     switch($form->user_status_id){
                         case 1:
-                            $content = '您的账号已被 处理为普通用户,'.'若有疑问请联系xzy';
+                            $content = '您的账号已被处理为普通用户';
                             break;
                         case 2:
-                            $content = '您的账号已被处理为管理员,'.'若有疑问请联系xzy';
+                            $content = '您的账号已被处理为管理员';
                             break;
                         case 3:
-                            $content = '您的账号已被处理为开发者,'.'若有疑问请联系xzy';
+                            $content = '您的账号已被处理为开发者';
                             break;
                         default:break;
                     }

@@ -17,7 +17,7 @@
         </div>
         <button type="submit" class="btn btn-primary" style="margin-top: 20px" name="postAvatar">确认上传</button>
         @if(count($errors) > 0)
-           <div class="alert alert-danger" role="alert" style="margin-top: 20px">{{ $errors->first('avatar') }}</div>
+           <div class="alert alert-danger" role="alert" style="margin-top: 20px">请上传小于 5M 的图像</div>
         @endif
         @if(Session::has('wrong'))
             @if(Session::get('wrong'))

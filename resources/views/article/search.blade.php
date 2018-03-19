@@ -25,18 +25,30 @@
             @endforeach
 
             @foreach($searchArticles as $searchArticle)
-        <div class="row" style="">
+        <div class="row hidden-xs">
             <div class="col-md-1">
             <div class="col-md-11 col-xs-4" style=" padding-right: 0px">
                 <a href="{{ url('/users/'.$searchArticle['user']['id']) }}"><img src="{{ $searchArticle['user']['avatar'] }}" alt="..." class="img-circle img-responsive" > </a>
             </div>
             </div>
-            <div class="col-md-11" style="">
+            <div class="col-md-11" style="word-wrap:break-word;word-break: break-all">
                 <a href="{{ url('/articles/'.$searchArticle['id']) }}"><h4>{{ $searchArticle['title'] }}</h4></a>
                 <a href="{{ url('/articles/'.$searchArticle['id']) }}">{{ url('/articles/'.$searchArticle['id']) }}</a> &emsp;<small>{{ $searchArticle['created_at'] }} &emsp;<span class="iconfont icon-linedesign-14 " style="font-size: 12px;">{{ $searchArticle['read_total'] }} </span>&nbsp;<span class="iconfont icon-dianzan1"  style="font-size: 13px;">{{ $searchArticle['votes_total'] }} </span>&nbsp;<span class="iconfont icon-pinglun1"  style="font-size: 13px;">{{ $searchArticle['comments_total'] }} </span></small>
                 <br><br>{{ mb_substr($searchArticle['content'], 0, 200, 'utf-8').'...' }}
             </div>
         </div>
+                    <div class="row visible-xs-block">
+                        <div class="col-md-1">
+                            <div class="col-md-11 col-xs-4" style=" padding-right: 0px">
+                                <a href="{{ url('/users/'.$searchArticle['user']['id']) }}"><img src="{{ $searchArticle['user']['avatar'] }}" alt="..." class="img-circle img-responsive" > </a>
+                            </div>
+                        </div>
+                        <div class="col-md-11" style="word-wrap:break-word;word-break: break-all">
+                            <a href="{{ url('/articles/'.$searchArticle['id']) }}"><h4>{{ $searchArticle['title'] }}</h4></a>
+                            <a href="{{ url('/articles/'.$searchArticle['id']) }}">{{ url('/articles/'.$searchArticle['id']) }}</a> &emsp;<small>{{ $searchArticle['created_at'] }} &emsp;<span class="iconfont icon-linedesign-14 " style="font-size: 12px;">{{ $searchArticle['read_total'] }} </span>&nbsp;<span class="iconfont icon-dianzan1"  style="font-size: 13px;">{{ $searchArticle['votes_total'] }} </span>&nbsp;<span class="iconfont icon-pinglun1"  style="font-size: 13px;">{{ $searchArticle['comments_total'] }} </span></small>
+                            <br><br>{{ mb_substr($searchArticle['content'], 0, 100, 'utf-8').'...' }}
+                        </div>
+                    </div>
             <hr>
                 @endforeach
             @else

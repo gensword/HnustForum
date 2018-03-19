@@ -204,7 +204,7 @@ class ArticleController extends Controller
     {
         //上传文章图片
 
-        $this->validate($request, ['file' => 'bail|required|image|max:2000']);
+        $this->validate($request, ['file' => 'bail|required|image|max:5000']);
 
         $disk = Storage::disk('qiniu');
         $time = date('Y/m/d-H:i:s');

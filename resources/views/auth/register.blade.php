@@ -41,7 +41,7 @@
                     <div class="form-group">
                         <label for="exampleInputPassword1">确认密码</label>
                         <input type="password" class="form-control" id="ConfirmPassword" placeholder="Password" name="password">
-                        @if($errors->has('password'))<span style="color: #843534">确认密码不一致</span>@endif
+                        @if($errors->has('password'))<span style="color: #843534">{{ $errors->first('password') }}</span>@endif
                     </div>
                     <div class="form-group ">
                         <label>验证码</label>

@@ -27,7 +27,7 @@ class IndexController extends Controller
                 $articles = $request->category_id ? Article::where('article_category_id', $request->category_id)->where('isDraft', 0)->orderBy('votes_total', 'desc')->paginate(25) : Article::where('isDraft', 0)->orderBy('votes_total', 'desc')->paginate(25);
                 break;
             case 'status':
-                $articles = $request->category_id ? Article::where('article_category_id', $request->category_id)->where('article_status_id', 25)->where('isDraft', 0)->paginate(25) : Article::where('article_status_id', 25)->paginate(25);
+                $articles = $request->category_id ? Article::where('article_category_id', $request->category_id)->where('article_status_id', '>=', 4)->where('isDraft', 0)->paginate(25) : Article::where('article_status_id', '>=', 4)->paginate(25);
                 break;
             default:
                 $articles = $request->category_id ? Article::where('article_category_id', $request->category_id)->where('isDraft', 0)->orderBy('article_status_id', 'desc')->orderBy('created_at', 'desc')->paginate(25) : Article::where('isDraft', 0)->orderBy('article_status_id', 'desc')->orderBy('created_at', 'desc')->paginate(25);

@@ -107,6 +107,9 @@ class UserController extends Controller
             'resume' => 'required_without_all:username,major,grade,gender,weixin'
         ]);
 
+        if(Auth::id() != $user_id)
+            abort('403', 'Not Allowed');
+
         $user = Husers::find($user_id);
         if($request->username)
             $user->username = $request->username;
@@ -130,7 +133,7 @@ class UserController extends Controller
     public function postAvatar(Request $request){
         //用户变更头像
 
-        $this->validate($request, ['avatar' => 'bail|required|image|max:2000']);
+        $this->validate($request, ['avatar' => 'bail|required|image|max:5000']);
 
         $disk = Storage::disk('qiniu');
         $time = date('Y/m/d-H:i:s');

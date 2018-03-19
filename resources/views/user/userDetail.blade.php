@@ -9,7 +9,7 @@
           <div class="row"  style="background-color:white; border: #e5e5e5 1px solid">
           <div class="row page-header">
           <div class="col-md-6 col-xs-6">
-              <a href="{{ url('/users/'.$user->id) }}"><img src="{{ $user->avatar }}" alt="..." class="img-circle img-responsive" ></a>
+              <a href="{{ url('/users/'.$user->id) }}"><img src="{{ $user->avatar }}" alt="..." class="img-circle img-responsive" styly=""></a>
           </div>
               <div class="col-md-6 col-xs-6" ><h4>{{ $user->username }}</h4>@if($user->gender)<span class="iconfont icon-xingbienv"></span>@else<span class="iconfont icon-xingbienan"></span>@endif<p> 第 {{$user->id}} 位会员<br>注册于 {{$user->created_at}}</p></div>
           </div>

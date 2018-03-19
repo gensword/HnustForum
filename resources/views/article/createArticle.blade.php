@@ -77,7 +77,7 @@
     $(function(){
         $(".dropzone").dropzone ({
             url:"{{ url('/article/postImg') }}",
-            maxFilesize: 2,
+            maxFilesize: 5,
             init:function(){
                 this.on('drop', function(file){
                     var start = testEditor.getCursor();
