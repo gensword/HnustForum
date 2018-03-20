@@ -72,6 +72,7 @@
             </li>
             <li><a href="{{ url('/index/4') }}">爱游戏</a></li>
             <li><a href="{{ url('/index/5') }}">问答专区</a></li>
+            <li><a href="{{ url('/index/10') }}">无聊吐槽</a></li>
             <li><a href="{{ url('/index/6') }}">跳蚤市场</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">非诚勿扰 <span class="caret"></span></a>

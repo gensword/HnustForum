@@ -183,7 +183,7 @@
         });
 
         $("#reply").on("keyup blur",function () {
-            $('#preview').html(marked($("#reply").val()))
+            $('#preview').html(marked($("#reply").val().replace(/^#\d+/, '')))
         });
 
         $("#comment").click(function(){

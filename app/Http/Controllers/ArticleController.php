@@ -115,13 +115,13 @@ class ArticleController extends Controller
         }
         $comment = new Comments;
         //dd($request->reply);
-        if (preg_match('/^#(\d+)(.*)/', $request->reply, $matches)) {    //回复相应楼层
+        if (preg_match('/^#(\d+)/', $request->reply, $matches)) {    //回复相应楼层
             $commentRange = intval($matches[1]) - 1;
             if ($commentRange > Comments::where('pid', 0)->count())    //如果回复楼层不存在，则该回复为顶级回复
                 $comment->pid = 0;
             else
                 $comment->pid = DB::table('comments')->where('pid', '=', 0)->where('article_id', '=', $request->article_id)->offset($commentRange)->limit(1)->get()->first()->id;
-            $comment->content = $matches[2];
+            $comment->content = preg_replace('/^#(\d+)/', '', $request->reply);
         } else {   //顶级回复
             $comment->pid = 0;
             $comment->content = preg_replace_callback('/:(\w+):/', function ($matches) {
@@ -194,6 +194,11 @@ class ArticleController extends Controller
                 break;
             case 6:
                 $category = '跳蚤市场';
+                break;
+            case 10:
+                $category = '无聊吐槽';
+                break;
+            default:
                 break;
         }
 
