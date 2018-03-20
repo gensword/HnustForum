@@ -56,5 +56,10 @@ class Article_categoryTableSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             'pCategory_id' => 7]);
+        DB::table('article_category')->insert(['category' => 10,
+            'description' => 'appointmentFemale',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            'pCategory_id' => 0]);
     }
 }
