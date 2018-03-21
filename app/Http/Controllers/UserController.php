@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Validator;
 use Illuminate\Support\Facades\Gate;
 use App\Notify;
@@ -15,6 +16,14 @@ use App\Notify;
 
 class UserController extends Controller
 {
+    private function checkIfFollow($owner, $fans){
+        if (Redis::sismember('fans:'.$owner, $fans)){
+            return true;
+        }
+        else return false;
+    }
+
+
     private function changeUserAvatar($avatar){
         //用户修改头像
 
@@ -182,16 +191,20 @@ class UserController extends Controller
     public function postPassword(Request $request, $user_id){
         //用户变更密码
 
+        if($user_id != Auth::id())
+            return false;
+
         $this->validate($request, [
-            'newPassword_confirmation' => 'required',
+            'newPassword_confirmation' => 'required|min:6',
             'newPassword' => 'confirmed'
         ]);
 
         $user = Husers::find($user_id);
-        $user->password = $request->newPassword;
+        $user->password = password_hash($request->newPassword, PASSWORD_BCRYPT);
         $user->save();
 
-        return Redirect::to('/users/'.$user_id);
+        Auth::logout();
+        return Redirect::route('login');
     }
 
 
@@ -214,6 +227,11 @@ class UserController extends Controller
 
     public function follow(Request $request, NewsController $news){
         //关注用户
+
+
+        if($this->checkIfFollow(Auth::id(), $request->followUid))
+            return;
+
 
         $owner = 'followers:'.Auth::id();
         $follower = $request->followUid;
@@ -262,6 +280,8 @@ class UserController extends Controller
         Redis::srem($fans, $fancer);     //向被关注者粉丝列表移除粉丝
 
         $user = Husers::find($request->cancelUid);
+        if(!$user->followers)
+            return false;
         $user->followers -= 1;
         $user->save();
 

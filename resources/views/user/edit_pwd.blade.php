@@ -10,7 +10,7 @@
             <div class="col-sm-7">
                 <input type="password" class="form-control" name="newPassword_confirmation" placeholder="new password">
             </div>
-            @if($errors->has('newPassword_confirmation'))<span>密码不能为空</span>@endif
+            @if($errors->has('newPassword_confirmation'))<span>密码不能为空且长度至少6位</span>@endif
         </div>
         <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label">确认密码</label>

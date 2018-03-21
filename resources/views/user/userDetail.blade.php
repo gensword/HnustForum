@@ -55,7 +55,10 @@
                           <div class="col-md-1"></div>
                           <div class="col-md-10">
                                 @if(!Redis::sismember('fans:'.$user->id, Auth::id()))
-                                    <button type="button" style="background-color: #ff7e87" class="btn btn-danger btn-block" onclick="location.href='{{ url("/users/follow/".$user->id) }}'"><span class="iconfont icon-attend" aria-hidden="true"></span><span>关注ta</span></button>
+                                    <form action="{{ url("/users/follow/".$user->id) }}" method="post">
+                                        {!! csrf_field() !!}
+                                    <button type="submit" style="background-color: #ff7e87" class="btn btn-danger btn-block" ><span class="iconfont icon-attend" aria-hidden="true"></span><span>关注ta</span></button>
+                                    </form>
                               @else
                                   <button type="button"  class="btn btn-default btn-block" onclick="location.href='{{ url("/users/cancelFollow/".$user->id) }}'"><span class="iconfont icon-quxiaoguanzhu1" aria-hidden="true"></span><span>取消关注</span></button>
                               @endif

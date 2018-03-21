@@ -26,7 +26,7 @@ Route::get('/users/{user_id}/edit', 'UserController@showEdit');
 Route::get('/users/{user_id}/edit/edit_pwd', 'UserController@showEditPwd');
 Route::get('/users/{user_id}/edit/edit_avatar', 'UserController@showEditAvatar');
 Route::get('/users/{user_id}/edit/edit_notify', 'UserController@showEditNotify');
-Route::get('/articles/{article_id}', 'ArticleController@showArticle');
+Route::get('/articles/{article_id}', 'ArticleController@showArticle')->name('article');
 Route::get('/articles/create/{category_id}', 'ArticleController@showCreatePage')->middleware('auth');
 Route::get('/users/{user_id}/messages', 'MessageController@showMessages');
 Route::get('/users/{user_id}/notify', 'UserController@showNotify');
@@ -63,7 +63,7 @@ Route::get('/users/{user_id}/follow', 'UserController@showFollowers');
 Route::post('/users/{user_id}/postAvatar', 'UserController@postAvatar');
 Route::post('/users/setNotifyStatus', 'UserController@notifyStatus');
 Route::post('/users/getNotifyStatus', 'UserController@getNotifyStatus');
-Route::get('/users/follow/{followUid}', 'UserController@follow')->middleware('auth');
+Route::post('/users/follow/{followUid}', 'UserController@follow')->middleware('auth');
 Route::get('/users/cancelFollow/{cancelUid}', 'UserController@cancelFollow')->middleware('auth');
 Route::post('/users/{user_id}/postImages/{gender}', 'HiManController@postImages');
 
