@@ -181,7 +181,7 @@
                     <span style="">活跃用户</span><hr style="margin-top: 10px">
                     <div class="users-label">
                     @foreach(\App\Husers::all()->sortByDesc('vitality')->take(10) as $activeUser)
-                    <a class="users-label-item" href="{{ url('/users/'.$activeUser->id) }}" title="louduanxiong">
+                    <a class="users-label-item" href="{{ url('/users/'.$activeUser->id) }}" title="{{ $activeUser->username }}">
                         <img class="avatar-small inline-block" src="{{ $activeUser->avatar }}"> {{ $activeUser->username }}
                     </a>
                     @endforeach
