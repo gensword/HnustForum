@@ -216,7 +216,7 @@
 @if( Route::currentRouteName() == 'category')<a href="{{ url('articles/create/'.Request::route('category_id')) }}" style="color: #838383"><span class="iconfont icon-bianji2"  style=" position: fixed;z-index: 100;bottom: 70px;right:0px;font-size: 55px;cursor:pointer;"></span> </a> @endif
 <a style="color: #838383"><span class="iconfont icon-fanhuidingbu" id="top" style="display:none; position: fixed;z-index: 100;bottom: 0px;right:0px;font-size: 50px;cursor:pointer;"></span> </a>
 @section('footer')
-    <div class="jumbotron " style=" margin-top:150px; background-color: white">
+    <div class="jumbotron " style=" margin-top:20%; background-color: white">
         <div class="container">
             <div class="row" style="margin-top: 0px;">
                 <div class="col-md-6">
